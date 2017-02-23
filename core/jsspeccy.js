@@ -283,6 +283,7 @@ function JSSpeccy(container, opts) {
 
 
 	/* == Timing / main execution loop == */
+	var lastFrameStamp;
 	var msPerFrame;
 	var remainingMs = 0; /* number of milliseconds that have passed that have not yet been
 	'consumed' by running a frame of emulation */
@@ -311,7 +312,7 @@ function JSSpeccy(container, opts) {
 	function tick() {
 		if (!self.isRunning) return;
 
-		stampBefore = performance.now();
+		var stampBefore = performance.now();
 		var timeElapsed = stampBefore - lastFrameStamp;
 		remainingMs += stampBefore - lastFrameStamp;
 		if (remainingMs > msPerFrame) {

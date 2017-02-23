@@ -839,7 +839,7 @@ JSSpeccy.SoundBackend = function() {
 
                 if (audioNode!=null) {
 
-			onAudioProcess = function(e) {
+			var onAudioProcess = function(e) {
 				var buffer = e.outputBuffer.getChannelData(0);
 				fillBuffer(buffer);
 			};

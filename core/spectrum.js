@@ -1,7 +1,7 @@
 JSSpeccy.Spectrum = function(opts) {
 	var self = {};
 
-	model = opts.model || JSSpeccy.Spectrum.MODEL_128K;
+	var model = opts.model || JSSpeccy.Spectrum.MODEL_128K;
 
 	var viewport = opts.viewport;
 	var keyboard = opts.keyboard;
