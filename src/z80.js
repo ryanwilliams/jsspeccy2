@@ -1,9 +1,7 @@
 /*
 Z80 core.
 To avoid mass repetition of code across the numerous instruction variants
-the code for this component is built up programmatically and evaluated in
-the global scope. CoffeeScript is used here for its support of multi-line
-strings, and expression interpolation in strings.
+the code for this component is built up programmatically and evaluated.
 */
 
 
