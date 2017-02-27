@@ -18,6 +18,17 @@ of the host processor, as typed arrays are native-endian
 */
 
 export default function buildZ80(opts = {}) {
+  function handleTrap(i) {
+    if (opts.traps) {
+      const trap = opts.traps[i];
+      if (trap && trap[2]) {
+        return trap[2].call(null, this);
+      }
+    }
+
+    return true;
+  }
+
   const endianTestBuffer = new ArrayBuffer(2);
   const endianTestUint16 = new Uint16Array(endianTestBuffer);
   const endianTestUint8 = new Uint8Array(endianTestBuffer);
@@ -1343,9 +1354,9 @@ export default function buildZ80(opts = {}) {
       }
       if (typeof runString !== 'undefined') {
         const trapCode = [];
-        traps.forEach(([address, opcode, action]) => {
+        traps.forEach(([address, opcode, action], trapIndex) => {
           if (opcode === i) {
-            trapCode.push(`if (regPairs[${rpPC}] == ${(address + 1) & 0xffff} && !(${action})) break;`);
+            trapCode.push(`if (regPairs[${rpPC}] == ${(address + 1) & 0xffff} && !(handleTrap(${trapIndex}))) break;`);
           }
         });
         clauses.push(`

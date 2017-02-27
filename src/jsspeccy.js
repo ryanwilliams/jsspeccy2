@@ -76,9 +76,13 @@ class Setting {
 
 export default class JSSpeccy {
   constructor(container, opts = {}) {
+    var currentModel, spectrum;
+
+    const tapeLoad = () => spectrum.tapeLoad();
+
     const z80Traps = [
-      //[0x056b, 0xc0, 'JSSpeccy.traps.tapeLoad()'],
-      //[0x0111, 0xc0, 'JSSpeccy.traps.tapeLoad()']
+      [0x056b, 0xc0, tapeLoad],
+      [0x0111, 0xc0, tapeLoad]
     ];
 
     this.Z80 = buildZ80({
@@ -95,7 +99,6 @@ export default class JSSpeccy {
     this.isRunning = false;
     this.currentTape = null;
 
-    var currentModel, spectrum;
 
     /* == Set up viewport == */
     var viewport = new Viewport({
