@@ -1,4 +1,4 @@
-JSSpeccy.TzxFile = function(data) {
+export default function TzxFile(data) {
 	var self = {};
 
 	var blocks = [];

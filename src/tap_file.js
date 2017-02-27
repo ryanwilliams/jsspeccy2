@@ -1,4 +1,4 @@
-JSSpeccy.TapFile = function(data) {
+export default function TapFile(data) {
 	var self = {};
 
 	var i = 0;
@@ -23,7 +23,7 @@ JSSpeccy.TapFile = function(data) {
 	return self;
 };
 
-JSSpeccy.TapFile.isValid = function(data) {
+TapFile.isValid = function(data) {
 	/* test whether the given ArrayBuffer is a valid TAP file, i.e. EOF is consistent with the
 	block lengths we read from the file */
 	var pos = 0;

@@ -1,4 +1,4 @@
-JSSpeccy.Z80File = function(data) {
+export default function Z80File(data) {
 	var file = new DataView(data);
 
 	function extractMemoryBlock(data, fileOffset, isCompressed, unpackedLength) {

@@ -1,4 +1,4 @@
-JSSpeccy.SnaFile = function(data) {
+export default function SnaFile(data) {
 	var mode128 = false, snapshot = null, len = data.byteLength, sna;
 
 	switch (len) {
