@@ -131,10 +131,10 @@ export default class SoundGenerator {
       // Here we calculate the number of AY_STEPs which happen during one sample
       // at the given sample rate. No. of events = sample rate / (clock/8).    */
       // AY_STEP is a multiplier used to turn the fraction into a fixed point     */
-      // number.}
+      // number.
       var t1 = AY_STEP * AY8912_sampleRate * 8.0;
       AY8912_UpdateStep = t1 / clock;
-    }
+    };
 
   //
   // ** set output gain
@@ -365,7 +365,7 @@ export default class SoundGenerator {
         //'The envelope counter on the AY-3-8910 has 16 AY_STEPs. On the YM2149 it
         //'has twice the AY_STEPs, happening twice as fast. Since the end result is
         //'just a smoother curve, we always use the YM2149 behaviour.
-        //'*/}
+        //'*/
         if (AY8912_Regs[AY_ESHAPE] != 0xFF)
         {
           AY8912_Regs[AY_ESHAPE] = AY8912_Regs[AY_ESHAPE] & 0xF;
