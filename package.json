@@ -1,6 +1,9 @@
 {
+  "name": "jsspeccy",
+  "version": "2.2.2",
   "repository": {},
   "license": "GPL",
+  "main": "src/jsspeccy.js",
   "scripts": {
     "build": "NODE_ENV=development webpack --config webpack.config.js; NODE_ENV=production webpack --config webpack.config.js -p",
     "serve": "webpack-dev-server --content-base build/"
