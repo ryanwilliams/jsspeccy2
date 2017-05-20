@@ -46,6 +46,10 @@ export default class Spectrum {
       display: display
     });
 
+
+    this.getMemory = () => memory;
+    this.getProcessor = () => processor;
+
     /* internal state to allow picking up mid-frame (e.g. when loading from a snapshot) */
     var startNextFrameWithInterrupt = true;
 

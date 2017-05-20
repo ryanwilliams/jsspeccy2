@@ -262,9 +262,7 @@ export default class JSSpeccy {
 
     /* == Selecting Spectrum model == */
     this.onChangeModel = new Event();
-    this.getModel = () => {
-      return currentModel;
-    };
+    this.getModel = () => currentModel;
     this.setModel = (newModel) => {
       if (newModel != currentModel) {
         spectrum = new Spectrum({
@@ -280,6 +278,11 @@ export default class JSSpeccy {
         this.onChangeModel.trigger(newModel);
       }
     };
+
+    /* Debugger accessors */
+    this.getSpectrum = () => spectrum;
+    this.getProcessor = () => spectrum.getProcessor();
+    this.getMemory = () => spectrum.getMemory();
 
 
     /* == Timing / main execution loop == */
@@ -352,9 +355,7 @@ export default class JSSpeccy {
       updateViewportIcon();
       this.onStart.trigger();
 
-      initReferenceTime();
-
-      requestAnimationFrame(tick);
+      this.step();
     };
     this.onStop = new Event();
     this.stop = () => {
@@ -362,8 +363,21 @@ export default class JSSpeccy {
       updateViewportIcon();
       this.onStop.trigger();
     };
+
+
+    /* Debugger controls */
+    this.step = () => {
+      requestAnimationFrame(e => tick(e, true));
+    };
     this.reset = () => {
       spectrum.reset();
+    };
+    this.pause = () => {
+      this.isRunning = false;
+    };
+
+    this.continue = () => {
+      this.start();
     };
 
 
