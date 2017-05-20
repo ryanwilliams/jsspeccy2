@@ -26,7 +26,7 @@ import autoloaders from './autoloaders';
 import buildZ80 from './z80';
 
 
-class Event {
+export class Event {
   constructor() {
     this.listeners = [];
   }
@@ -56,7 +56,7 @@ class Event {
   }
 }
 
-class Setting {
+export class Setting {
   constructor(initialValue) {
     var value = initialValue;
 
@@ -75,8 +75,17 @@ class Setting {
 }
 
 export default class JSSpeccy {
-  constructor(container, opts = {}) {
+  constructor(container, opts) {
+    if (container || opts) {
+      this.attach(container, opts);
+    }
+
+    this.onAttach = new Event();
+  }
+
+  attach(container, opts = {}) {
     var currentModel, spectrum;
+    this.attacahed = true;
 
     const tapeLoad = () => spectrum.tapeLoad();
 
@@ -377,5 +386,6 @@ export default class JSSpeccy {
       this.stop();
     }
 
+    this.onAttach.trigger();
   }
 }
