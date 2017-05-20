@@ -75,17 +75,19 @@ export class Setting {
 }
 
 export default class JSSpeccy {
-  constructor(container, opts) {
-    if (container || opts) {
+  constructor(container, opts = {}) {
+    if (container) {
       this.attach(container, opts);
     }
+
+    this.options = Object.assign({}, opts);
 
     this.onAttach = new Event();
   }
 
   attach(container, opts = {}) {
     var currentModel, spectrum;
-    this.attacahed = true;
+    this.isAttached = true;
 
     const tapeLoad = () => spectrum.tapeLoad();
 
@@ -127,9 +129,9 @@ export default class JSSpeccy {
 
 
     const updateViewportIcon = () => {
-      if (this.isDownloading) {
+      if (!this.options.hideViewportIcon && this.isDownloading) {
         viewport.showIcon('loading');
-      } else if (!this.isRunning) {
+      } else if (!this.options.hideViewportIcon && !this.isRunning) {
         viewport.showIcon('play');
       } else {
         viewport.showIcon(null);
