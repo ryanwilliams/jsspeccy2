@@ -47,6 +47,7 @@ export default class Spectrum {
     });
 
 
+    this.getDisplay = () => display;
     this.getMemory = () => memory;
     this.getProcessor = () => processor;
 

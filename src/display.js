@@ -70,6 +70,7 @@ export default class Display {
     var pixels2 = new Int32Array(imageData2.data.buffer);
 
     var borderColour = 7;
+    this.getBorder = () => borderColour;
     this.setBorder = (val) => {
       borderColour = val;
     };
