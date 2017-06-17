@@ -43,7 +43,6 @@ export default class Viewport {
     }
 
     this.setResolution = (width, height) => {
-      container.style.width = width * scaleFactor + 'px';
 
       this.canvas.width = width;
       this.canvas.height = height;
