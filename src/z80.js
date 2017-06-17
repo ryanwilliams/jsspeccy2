@@ -1029,7 +1029,7 @@ export default function buildZ80(opts = {}) {
       CONTEND_PORT_LATE(regPairs[${rpBC}]);
 
       regPairs[${rpHL}]${modifier};
-      outitemp2 = (outitemp + regs[${rL}]) & 0xff;
+      var outitemp2 = (outitemp + regs[${rL}]) & 0xff;
       regs[${rF}] = (outitemp & 0x80 ? ${FLAG_N} : 0) | ( (outitemp2 < outitemp) ? ${FLAG_H | FLAG_C} : 0) | (parityTable[ (outitemp2 & 0x07) ^ regs[${rB}] ] ? ${FLAG_P} : 0 ) | sz53Table[ regs[${rB}] ];
     `;
   };
