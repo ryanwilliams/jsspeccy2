@@ -1,3 +1,7 @@
+function isInput({ target }) {
+  return (['TEXTAREA', 'INPUT'].indexOf(target.tagName) > -1);
+}
+
 export default class Keyboard {
   constructor() {
     this.active = true;
@@ -8,9 +12,12 @@ export default class Keyboard {
     }
 
     const keyDown = (evt) => {
+      if (isInput(evt)) return;
       if (this.active) {
         registerKeyDown(evt.keyCode);
-        if (!evt.metaKey) return false;
+        if (!evt.metaKey) {
+          evt.preventDefault();
+        }
       }
     }
     const registerKeyDown = (keyNum) => {
@@ -20,8 +27,11 @@ export default class Keyboard {
       if (keyCode.caps) keyStates[0] &= 0xfe;
     }
     const keyUp = (evt) => {
+      if (isInput(evt)) return;
       registerKeyUp(evt.keyCode);
-      if (this.active && !evt.metaKey) return false;
+      if (this.active && !evt.metaKey) {
+        evt.preventDefault();
+      }
     }
     const registerKeyUp = (keyNum) => {
       var keyCode = keyCodes[keyNum];
@@ -30,7 +40,10 @@ export default class Keyboard {
       if (keyCode.caps) keyStates[0] |= 0x01;
     }
     const keyPress = (evt) => {
-      if (this.active && !evt.metaKey) return false;
+      if (isInput(evt)) return;
+      if (this.active && !evt.metaKey) {
+        evt.preventDefault();
+      }
     }
 
     var keyCodes = {
@@ -99,9 +112,9 @@ export default class Keyboard {
       return result;
     }
 
-    document.onkeydown = keyDown;
-    document.onkeyup = keyUp;
-    document.onkeypress = keyPress;
+    document.addEventListener('keydown', keyDown);
+    document.addEventListener('keyup', keyUp);
+    document.addEventListener('keypress', keyPress);
 
   }
 }
